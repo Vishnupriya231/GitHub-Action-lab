@@ -6,28 +6,19 @@ jobs:
   build:
     runs-on: self-hosted
 
-    strategy:
-      matrix:
-        python-version: [3.8]
-
     steps:
+    # Step 1: Checkout the repository
     - uses: actions/checkout@v3
 
-    - name: Install Python 3.9
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y python3.9 python3.9-venv python3.9-dev python3-pip
-        python3.9 --version
-
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: ${{ matrix.python-version }}
-
+    # Step 2: Install Python dependencies
     - name: Install dependencies
       run: |
         python3 -m pip install --upgrade pip
         python3 -m pip install pytest
 
+    # Step 3: Run tests
     - name: Run tests
-      run: python3 -m pytest addition.py
+      run: |
+        # If your code is in 'src' folder, uncomment next line
+        # cd src
+        python3 -m pytest addition.py
