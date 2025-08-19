@@ -10,7 +10,7 @@ jobs:
     # Step 1: Checkout the repository
     - uses: actions/checkout@v3
 
-    # Step 2: Create and activate virtual environment
+    # Step 2: Create and activate a virtual environment
     - name: Setup Python virtual environment
       run: |
         python3 -m venv venv
@@ -18,7 +18,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install pytest
 
-    # Step 3: List files to confirm path
+    # Step 3: List repository files to confirm file locations
     - name: List repository files
       run: ls -R
 
@@ -26,5 +26,5 @@ jobs:
     - name: Run pytest
       run: |
         source venv/bin/activate
-        # Adjust the path if your test file is in 'src' folder
+        # Adjust path if addition.py is inside a folder like 'src'
         python -m pytest src/addition.py
